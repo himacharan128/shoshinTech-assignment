@@ -29,7 +29,7 @@ class OfferDetailsScreen extends StatelessWidget {
               style: TextStyle(fontSize: 16),
             ),
             SizedBox(height: 16),
-            Text(
+            const Text(
               'Steps (1/4)',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
@@ -42,14 +42,14 @@ class OfferDetailsScreen extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.flash_on,
                     color: Colors.red,
                   ),
-                  SizedBox(width: 8.0), // Add some spacing between the icon and text
+                  SizedBox(width: 8.0),
                   Text(
                     '${offerDetails['total_lead']} users have already participated',
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 16,
                       color: Colors.red,
                     ),
@@ -60,7 +60,7 @@ class OfferDetailsScreen extends StatelessWidget {
             SizedBox(height: 16),
             Center(
               child: SizedBox(
-                width: double.infinity, // Makes the button take the full width available
+                width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
                     print('Button clicked! Launching ${offerDetails['ctaAction']}');
@@ -84,23 +84,22 @@ class OfferDetailsScreen extends StatelessWidget {
   Widget buildStep(String title, String reward, bool completed) {
     final steps = offerDetails['custom_data']['steps'] as List<String>? ?? [];
 
-    // Determine border color based on the step index
     Color borderColor;
     IconData icon;
     Color iconColor;
 
     if (title == 'Install the application' && completed) {
-      // First step (completed) - strikethrough with green border
+      // First step (completed)
       borderColor = Colors.green;
       icon = Icons.check; // Green tick
       iconColor = Colors.green;
     } else if (title == 'Complete 3 offers') {
-      // Second step (highlighted) - yellow border
+      // Second step (highlighted)
       borderColor = Colors.yellow.shade900;
       icon = Icons.timer; // Yellow timer
       iconColor = Colors.yellow.shade900;
     } else {
-      // Third and fourth steps - black border
+      // Third and fourth steps
       borderColor = Colors.grey;
       icon = Icons.circle; // Grey circle
       iconColor = Colors.grey;
@@ -120,19 +119,17 @@ class OfferDetailsScreen extends StatelessWidget {
             icon,
             color: iconColor,
           ),
-          SizedBox(width: 8.0), // Add some spacing between the icon and text
+          const SizedBox(width: 8.0),
           Text(
             title,
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.w900, decoration: completed ? TextDecoration.lineThrough : null),
           ),
           Text(
-            'INR $reward',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.w900),
+            '₹ $reward',
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w900),
           ),
         ],
       ),
     );
   }
-
-
 }
